@@ -64,6 +64,15 @@ if user_file and api_key:
         with st.chat_message(message["role"]):
             st.write(message["content"])
 
+    # Chat session controls
+    with st.sidebar:
+        st.subheader("⚙️ CHAT SESSION PARAM.", divider="grey")
+        if st.button("Clear Chat Session", use_container_width=True, type="primary"):
+            st.session_state["messages"] = [
+                {"role": "assistant", "content": ":sparkles: Hi, I'm here to help, How can I assist you today ? :star:"}]
+        if st.button("Clear Chat Memory", use_container_width=True, type="secondary"):
+            st.session_state["chat_engine"].reset()
+
     # Prompt for user input and save to chat history
     if prompt := st.chat_input("Your question"):
         # add_to_message_history("user", prompt)
